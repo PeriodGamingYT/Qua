@@ -26,7 +26,7 @@
 		Beta 13.09.0039
 
 	Architecture Version:
-		Pre-Alpha 0.01.0000
+		Pre-Alpha 0.01.0002
 	
 
 # QS Communication structure.
