@@ -1,0 +1,73 @@
+# Versioning
+	Versioning Format: 
+		<Dev-Channel> <Release>.<MinorFix>.<HotFix>
+
+  Versioning Part Formats:
+    <Dev-Channel>:
+      ("Pre-" / " " / "Post-") ("Alpha" / "Beta" / "Release")
+
+    <Release>
+      (Release #, n-digits)
+
+    <MinorFix>
+      (Minor Fix #, 2-digits)
+
+    <HotFix>
+      (Hot Fix #, 4-digits)
+
+    (
+      If something overflows, it will go to the next part.
+      Eg:
+        (<MinorFix>.<HotFix>)
+        34.9999 -> 35.0000
+    )
+	
+	Example:
+		Beta 13.09.0039
+
+	Architecture Version:
+		Pre-Alpha 0.00.0000
+	
+
+# QS Communication structure.
+Legend:
+	QS = Qua Station
+
+NOTE: The root QS is the server.
+
+Example:
+	QS -\
+  	  |- QS -\
+	QS -/      |- QS -|- QS <-- (This is the root, and is displayed to the user.)
+             /      /
+	QS -------/      /
+                  /
+	QS ------------/
+
+# QS Properties.
+Legend:
+	Empty = NULL (C/C++) / Err() (Rust) / nullptr (C++)
+
+QS:
+	Vector2 size
+	Vector2 offset
+	QS children[]
+	QS parent <-- (Empty if parent.)
+
+QS Interface Functions (Use snake case in Rust, and camel case in C & C++):
+  (In Rust use impl without the "qs" part, case normally.)
+	qsDisplay(QS root)
+	qsDraw(QS child, QDC drawCommand)
+	qsAdd(QS root, QS newChild)
+	qsRemove(QS root) <-- (Removing current displayed QS (almost always root) stops Qua.)
+	qsDefault() <-- (Use for this is (Eg. in C/C++): QS *qs = qsDefault())
+
+# QDC Properties.
+  (To be worked on.)
+
+# Implentation Recommendations.
+Preffered language (Sorted by top pick -> bottom pick):
+	Rust, <-- (Lanugage for offical implementation.)
+	C++,
+	C
+	
